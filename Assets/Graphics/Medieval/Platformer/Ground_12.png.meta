@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c021e4038b318e54faf4e7597d6b77e7
+guid: 73fdb98b627c101419da351509a22009
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2971653748508199937
-    second: mage_0
+      213: 5298387618888651795
+    second: Ground_12_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mage_0
+      name: Ground_12_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 16
-        width: 53
-        height: 58
+        x: 0
+        y: 2
+        width: 127
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10c0a4bf65f6d3920800000000000000
-      internalID: 2971653748508199937
+      spriteID: 3149f22a777a78940800000000000000
+      internalID: 5298387618888651795
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mage_0: 2971653748508199937
+      Ground_12_0: 5298387618888651795
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
