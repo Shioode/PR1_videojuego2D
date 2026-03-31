@@ -20,8 +20,8 @@ public class MovPersonaje : MonoBehaviour
     void Start()  
     {
         
-        rb= GetComponent<Rigidbody2D>();
-
+        rb = GetComponent<Rigidbody2D>();
+        barril.SetActive = false;
   
     }
 
