@@ -8,7 +8,7 @@ public class MovPersonaje : MonoBehaviour
 
     
     
-    public float velocidad= 0.5f;
+    public float velocidad= 0.04f;
 
     public float impulsoSalto=1;
 
@@ -16,16 +16,24 @@ public class MovPersonaje : MonoBehaviour
 
     public GameObject barril;
 
+    GameObject respawn;
+
 
     Rigidbody2D rb;
+
+    Animator controlAnimacion;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()  
     {
-        
+        controlAnimacion = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         barril = GameObject.Find("barril");
+        respawn = GameObject.Find("Respawn");
+        transform.position=respawn.transform.position;
+
+        
   
     }
 
@@ -33,7 +41,7 @@ public class MovPersonaje : MonoBehaviour
     void Update()
     {
 
-
+        controlAnimacion.SetBool("activaCamina",true);
 
         // this.transform.position = new Vector3(this.transform.position.x + 0.1f, this.transform.position.y,0);
 
@@ -59,7 +67,16 @@ public class MovPersonaje : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,0.7f);
         Debug.DrawRay(transform.position,Vector2.down*0.7f, Color.red);
 
-         
+         //ANIMACION CAMINADO
+
+         if(moveInput.x != 0)
+        {
+            controlAnimacion.SetBool("activaCamina",true);
+        }
+        else 
+        {
+            controlAnimacion.SetBool("activaCamina",false);
+        }
 
         if(hit.collider == true)
         {
@@ -100,4 +117,64 @@ public class MovPersonaje : MonoBehaviour
 
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name == "roca")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.name == "roca")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    // void OnTriggerEnter2D(Collider2D otroObjeto)
+    // {
+    //     if (otroObjeto.gameObject.name == "coin")
+    //     {
+    //         otroObjeto.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+    //     }
+    // }
+
+    // void OnTriggerExit2D(Collider2D otroObjeto)
+    // {
+    //     if (otroObjeto.gameObject.name == "coin")
+    //     {
+    //         otroObjeto.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    //     }
+    // }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Trigger con:" + col.gameObject.name);
+
+        //MUERTE
+
+        if (col.gameObject.name == "dead")
+        {
+          GameManager.vidas -= 1;  
+
+          transform.position = respawn.transform.position;
+        }
+        //Checkpoint
+        if (col.gameObject.name == "checkpoint")
+        {
+            respawn.transform.position = col.transform.position;
+        }
+
+        //coin
+
+        if(col.gameObject.name == "coin")
+        {
+            GameManager.puntos += 10;
+            Destroy(col.gameObject, 2.0f);
+        }
+    }
 }
+
+
