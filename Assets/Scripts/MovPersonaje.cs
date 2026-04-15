@@ -18,10 +18,9 @@ public class MovPersonaje : MonoBehaviour
 
     GameObject respawn;
 
+    public bool direccionBalaDerecha= true;
 
     Rigidbody2D rb;
-
-    Animator controlAnimacion;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,16 +50,20 @@ public class MovPersonaje : MonoBehaviour
 
         this.transform.Translate(moveInput.x*velocidad,moveInput.y,0);
 
-        //moveInput.x = (-1:A).-------------------(1:D)
+      
+
+
         //FLIP//
 
         if (moveInput.x < 0)
         {
+            direccionBalaDerecha = false;
             this.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         else 
         {
+            direccionBalaDerecha = true;
             this.GetComponent<SpriteRenderer>().flipX = false;
         }
 
@@ -103,19 +106,9 @@ public class MovPersonaje : MonoBehaviour
             rb.AddForce(transform.up*impulsoSalto,ForceMode2D.Impulse);
         }
 
-    //Disparo
-
-    bool disparo = InputSystem.actions["Attack"].WasPressedThisFrame();
-
-        if (disparo)
-        {
-            Instantiate(barril, new Vector3(0,0,0), Quaternion.identity);
-        }
-
-    
-    
-
     }
+
+
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -166,15 +159,9 @@ public class MovPersonaje : MonoBehaviour
         {
             respawn.transform.position = col.transform.position;
         }
-
-        //coin
-
-        if(col.gameObject.name == "coin")
-        {
-            GameManager.puntos += 10;
-            Destroy(col.gameObject, 2.0f);
-        }
+    
     }
 }
+
 
 
