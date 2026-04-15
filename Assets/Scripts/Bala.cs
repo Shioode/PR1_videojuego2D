@@ -20,10 +20,17 @@ public class Bala : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
-        transform.Rotate(0,0,0.5f);
+     transform.Rotate(0,0,0.5f);
+    if (direccionPersonaje)
+        {
 
-        disparo.transform.Translate(0.01f,0,0);
+
+             disparo.transform.Translate(0.01f,0,0);
+        }
+    else
+        {
+            disparo.transform.Translate(-0.01f,0,0);
+        }
 
     }
     
