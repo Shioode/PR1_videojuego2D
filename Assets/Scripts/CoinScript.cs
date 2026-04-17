@@ -19,7 +19,7 @@ public class CoinScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
          //coin
-        Debug.Log(col.gameObject.name);
+        //Debug.Log(col.gameObject.name);
         if(col.gameObject.name == "Personaje")
         {
             GameManager.puntos += 10;

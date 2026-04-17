@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class ArmaScript : MonoBehaviour
 {
 
-    public GameObject disparo;
+    public GameObject bala;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

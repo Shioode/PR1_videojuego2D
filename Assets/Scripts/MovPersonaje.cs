@@ -22,6 +22,8 @@ public class MovPersonaje : MonoBehaviour
 
     Rigidbody2D rb;
 
+    Animator controlAnimacion;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()  
@@ -40,7 +42,7 @@ public class MovPersonaje : MonoBehaviour
     void Update()
     {
 
-        controlAnimacion.SetBool("activaCamina",true);
+        // controlAnimacion.SetBool("activaCamina",true);
 
         // this.transform.position = new Vector3(this.transform.position.x + 0.1f, this.transform.position.y,0);
 
@@ -68,7 +70,7 @@ public class MovPersonaje : MonoBehaviour
         }
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,0.7f);
-        Debug.DrawRay(transform.position,Vector2.down*0.7f, Color.red);
+        // Debug.DrawRay(transform.position,Vector2.down*0.7f, Color.red);
 
          //ANIMACION CAMINADO
 
@@ -104,6 +106,11 @@ public class MovPersonaje : MonoBehaviour
         {
             Debug.Log("salto");
             rb.AddForce(transform.up*impulsoSalto,ForceMode2D.Impulse);
+        }
+
+        if (transform.position.y <= -100)
+        {
+            Muerte();
         }
 
     }
@@ -146,13 +153,11 @@ public class MovPersonaje : MonoBehaviour
     {
         Debug.Log("Trigger con:" + col.gameObject.name);
 
-        //MUERTE
+        //MUERTE POR PINCHO
 
         if (col.gameObject.name == "dead")
         {
-          GameManager.vidas -= 1;  
-
-          transform.position = respawn.transform.position;
+          Muerte();
         }
         //Checkpoint
         if (col.gameObject.name == "checkpoint")
@@ -160,6 +165,14 @@ public class MovPersonaje : MonoBehaviour
             respawn.transform.position = col.transform.position;
         }
     
+    }
+
+    
+
+    public void Muerte ()
+    {
+        GameManager.vidas -=1;
+        transform.position = respawn.transform.position;
     }
 }
 
