@@ -20,6 +20,8 @@ public class MovPersonaje : MonoBehaviour
 
     public bool direccionBalaDerecha= true;
 
+    public string direccionPersonaje = "quieto";
+
     Rigidbody2D rb;
 
     Animator controlAnimacion;
@@ -50,7 +52,7 @@ public class MovPersonaje : MonoBehaviour
 
         Vector2 moveInput = InputSystem.actions["Move"].ReadValue<Vector2>(); //=[-1,0]
 
-        this.transform.Translate(moveInput.x*velocidad,moveInput.y,0);
+        this.transform.Translate(moveInput.x*velocidad*Time.deltaTime,moveInput.y,0);
 
       
 
@@ -61,12 +63,19 @@ public class MovPersonaje : MonoBehaviour
         {
             direccionBalaDerecha = false;
             this.GetComponent<SpriteRenderer>().flipX = true;
+            direccionPersonaje = "izq";
         }
 
-        else 
+        else if(moveInput.x > 0)
         {
             direccionBalaDerecha = true;
             this.GetComponent<SpriteRenderer>().flipX = false;
+            direccionPersonaje = "dcha";
+        }
+
+        else
+        {
+            direccionPersonaje = "quieto";
         }
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,0.7f);
@@ -107,6 +116,8 @@ public class MovPersonaje : MonoBehaviour
             Debug.Log("salto");
             rb.AddForce(transform.up*impulsoSalto,ForceMode2D.Impulse);
         }
+
+        // MUERTE POR CAIDA 
 
         if (transform.position.y <= -100)
         {

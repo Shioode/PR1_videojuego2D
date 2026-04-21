@@ -24,9 +24,9 @@ public class Enemigo : MonoBehaviour
     //ATAQUE
 
     public float velocidadAtaque= 0.1f;
-    public float distanciaAtaque= 1.0f;
+    public float distanciaAtaque= 4.0f;
 
-    public float distanciaEvitar= 0;
+    public float distanciaEvitar= 6;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,12 +46,16 @@ public class Enemigo : MonoBehaviour
 
         float distancia = Vector3.Distance(transform.position, Personaje.transform.position);
 
-        //DETECCIOM
+        Debug.DrawRay(transform.position,Personaje.transform.position,Color.red);
+
+        //DETECCION
         if (distancia <= distanciaAtaque)
         {
             estado = "ataque";
         }
 
+        //VUELVE A PATRULLAR 
+        
         if(distancia >= distanciaEvitar)
         {
             estado = "patrulla";
