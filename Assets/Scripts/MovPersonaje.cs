@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class MovPersonaje : MonoBehaviour
     public bool direccionBalaDerecha= true;
 
     public string direccionPersonaje = "quieto";
+
+    bool estoyAzul = false;
 
     Rigidbody2D rb;
 
@@ -95,14 +98,14 @@ public class MovPersonaje : MonoBehaviour
         if(hit.collider == true)
         {
             puedoSaltar= true;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+            // this.GetComponent<SpriteRenderer>().color = Color.white;
             
             
         }
         else
         {
             puedoSaltar=false;
-            this.GetComponent<SpriteRenderer>().color = Color.red;
+            // this.GetComponent<SpriteRenderer>().color = Color.red;
             
             
         }
@@ -184,7 +187,26 @@ public class MovPersonaje : MonoBehaviour
     {
         GameManager.vidas -=1;
         transform.position = respawn.transform.position;
+        
     }
+
+
+    public void CambiaColor()
+    {
+        if (estoyAzul)
+        {
+            this.GetComponent<SpriteRenderer>().color = Color.blue;
+            estoyAzul= false;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().color = Color.white;
+            estoyAzul= true;
+        }
+    }
+
+
+
 }
 
 
