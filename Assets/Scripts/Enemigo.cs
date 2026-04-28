@@ -52,7 +52,7 @@ public class Enemigo : MonoBehaviour
 
         float distancia = Vector3.Distance(transform.position, Personaje.transform.position);
 
-        Debug.DrawRay(transform.position, Personaje.transform.position, Color.red);
+        // Debug.DrawRay(transform.position, Personaje.transform.position, Color.red);
 
         //DETECCION
         if (distancia <= distanciaAtaque)
@@ -94,8 +94,8 @@ public class Enemigo : MonoBehaviour
         //ATAQUE
         if (estado == "ataque")
         {
-            Debug.Log(Personaje.transform.position);
-            Debug.Log("velocidadAtaque:" + velocidadAtaque);
+            // Debug.Log(Personaje.transform.position);
+            // Debug.Log("velocidadAtaque:" + velocidadAtaque);
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 Personaje.transform.position,
