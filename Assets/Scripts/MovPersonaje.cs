@@ -143,7 +143,7 @@ public class MovPersonaje : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Trigger con:" + col.gameObject.name);
+        // Debug.Log("Trigger con:" + col.gameObject.name);
 
         //MUERTE POR PINCHO
 
